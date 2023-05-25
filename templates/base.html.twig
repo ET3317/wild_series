@@ -12,8 +12,35 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        {% block googlefont %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        {% endblock %}
     </head>
     <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">THE WILD SERIES</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="#">Nos coups de coeur <span class="sr-only"><3</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('program_index') }}">Séries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('category_') }}">Catégories</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <img class="img-home-page" src="{{ asset('build/stanger-things.jpg') }}" alt=""/>
         {% block body %}{% endblock %}
     </body>
 </html>
