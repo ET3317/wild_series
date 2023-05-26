@@ -46,6 +46,10 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $category = $this->getReference($programData['categoryReference']);
             $program->setCategory($category);
             $manager->persist($program);
+
+            if ($programData['name'] === 'Lost') {
+                $this->addReference('program_Lost', $program);
+            }
         }
 
         $manager->flush();
