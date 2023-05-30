@@ -8,7 +8,8 @@
             </li>
         {% endfor %}
         {% for episode in season.episodes %}
-                <p>Episode: {{ episode.number }}. {{ episode.title }} <br> {{ episode.synopsis }}</p></a><br>
+            <a href="{{ path('showEpisode', {'program': program.id,'season': season.id, 'episode': episode.id }) }}">
+            Episode: {{ episode.number }}</a><p>. {{ episode.title }}</p><br>
         {% endfor %}
     </ul>
 {% endblock %}
