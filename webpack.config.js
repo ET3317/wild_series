@@ -9,11 +9,15 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
+    // Use image in twig template
+    .copyFiles({from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
+
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
-    .copyFiles({from: './assets/images'})
     /*
      * ENTRY CONFIG
      *

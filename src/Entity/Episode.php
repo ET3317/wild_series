@@ -14,17 +14,17 @@ class Episode
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $number = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $synopsis = null;
 
-    #[ORM\Column]
-    private ?int $season_id = null;
+    #[ORM\ManyToOne(inversedBy: 'episodes')]
+    private ?Season $season_id = null;
 
     public function getId(): ?int
     {
@@ -36,7 +36,7 @@ class Episode
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -48,7 +48,7 @@ class Episode
         return $this->number;
     }
 
-    public function setNumber(int $number): self
+    public function setNumber(?int $number): self
     {
         $this->number = $number;
 
@@ -60,34 +60,33 @@ class Episode
         return $this->synopsis;
     }
 
-    public function setSynopsis(string $synopsis): self
+    public function setSynopsis(?string $synopsis): self
     {
         $this->synopsis = $synopsis;
 
         return $this;
     }
 
-    public function getSeasonId(): ?int
+    public function setYear(int $year): self
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    public function getYear(): ?int
+    {
+        return $this->year;
+    }
+    public function getSeasonId(): ?Season
     {
         return $this->season_id;
     }
 
-    public function setSeasonId(int $season_id): self
+    public function setSeasonId(?Season $season_id): self
     {
         $this->season_id = $season_id;
 
         return $this;
-    }
-
-    public function setSeason(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getSeason(): ?int
-    {
-        return $this->season;
     }
 }
