@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\ProgramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
+#[UniqueEntity('name')]
 class Program
 {
     #[ORM\Id]
@@ -16,10 +19,13 @@ class Program
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "pas nul")]
+    #[Assert\Length(max: 30, maxMessage: "titre trop long mon ami")]
     private ?string $name = null;
 
     #[ORM\Column(length: 500)]
-    private ?string $synopsis = null;
+    #[Assert\NotBlank]
+    protected ?string $synopsis = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $poster = null;

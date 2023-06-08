@@ -21,7 +21,7 @@ public function new(Request $request, ProgramRepository $programRepository): Res
     $form->handleRequest($request);
 
     // Create the form, linked with $program
-    if ($form->isSubmitted()) {
+    if ($form->isSubmitted() && $form->isValid()) {
         $programRepository->save($program, true);
 
         return $this->redirectToRoute('program_index');
