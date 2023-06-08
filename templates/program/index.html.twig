@@ -3,7 +3,7 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <h1>Toutes les séries de la table program : </h1>
+    <h2 class="title-program-index">Catalogue </h2>
 
     <!--CArds-->
     <div class="card-container-programs" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
@@ -11,13 +11,11 @@
             <div class="card" style="width: 18rem; background-color: black; border: 1px solid white; color: white; margin:10px;">
                 <img class="card-img-top" src="/build/images/{{ program.poster }}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">{{ program.name }}</h5>
+                    <p class="card-text">{{ program.synopsis }}</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="width: 18rem; background-color: black; border: 1px solid white; color: white;">{{ program.name }}</li>
                     <li class="list-group-item" style="width: 18rem; background-color: black; border: 1px solid white; color: white;">{{ program.category.name }}</li>
-                    <li class="list-group-item" style="width: 18rem; background-color: black; border: 1px solid white; color: white;">{{ program.synopsis }}</li>
                 </ul>
                 <div class="card-body" style="text-decoration: none">
                     <a href="{{ path("program_show", { id: program.id }) }}" class="card-link" style="color:red">See Program</a>

@@ -20,27 +20,26 @@
         {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">THE WILD SERIES</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+        <a class="navbar-brand" href="/"><img class="ws-logo" src="{{ asset('build/images/ws-logo.jpeg') }}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" color="black">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="#">Nos coups de coeur <span class="sr-only"><3</span></a>
+                    <a class="nav-link text-warning" href="#">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('program_index') }}">Séries</a>
+                    <a class="nav-link text-warning" href="{{ path('program_index') }}">Séries</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('category_') }}">Catégories</a>
+                    <a class="nav-link text-warning" href="{{ path('category_index') }}">Catégories</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <img class="img-home-page" src="{{ asset('build/images/stanger-things.jpg') }}" alt=""/>
         {% block body %}{% endblock %}
     </body>
 </html>

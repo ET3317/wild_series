@@ -27,13 +27,13 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Stranger Things',
                 'synopsis' => 'Des enfants affrontent des phénomènes surnaturels dans une petite ville',
-                'poster' => 'BreakingBad.jpeg',
+                'poster' => 'stranger.jpeg',
                 'categoryReference' => 'category_Action',
             ],
             [
                 'name' => 'Friends',
                 'synopsis' => 'Les aventures et les déboires d\'un groupe d\'amis à New York',
-                'poster' => 'BreakingBad.jpeg',
+                'poster' => 'friends.jpeg',
                 'categoryReference' => 'category_Comedie',
             ],
             [
