@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    {{ form_start(form) }}
+    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
 {{ form_widget(form) }}
     <button type="submit" class="btn btn-warning mt-2" style="margin-left: 50px">Add program</button>
     {{ form_end(form) }}
