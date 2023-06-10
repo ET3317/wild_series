@@ -35,7 +35,7 @@ class CategoryController extends AbstractController
         // Create the form, linked with $category
         if ($form->isSubmitted()) {
             $categoryRepository->save($category, true);
-
+            $this->addFlash('success', 'The category has been created with success !');
             return $this->redirectToRoute('category_index');
         }
         return $this->render('category/new.html.twig', [
