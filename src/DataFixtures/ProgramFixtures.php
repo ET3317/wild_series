@@ -11,7 +11,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
     const PROGRAM = [
         1 =>[
-            'name' => 'walkind dead',
+            'name' => 'walking dead',
             'synopsis' => 'Des zombies envahissent la terre',
             'category'=> 'Action',
         ],
@@ -49,11 +49,13 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         }
         $manager->flush();
     }
+
     public function getDependencies()
     {
-        // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend
         return [
             CategoryFixtures::class,
         ];
     }
+
+
 }
