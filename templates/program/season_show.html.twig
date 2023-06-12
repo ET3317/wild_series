@@ -3,13 +3,13 @@
     <h1>{{ program.name }}</h1>
     <ul>
         {% for season in program.seasons %}
+            <p class="season-program-show">Season : {{ season.number }}</p>
             <li>
-                <a href="/program/{{program.id}}/season/{{season.id}}/episode/">Season : {{season.number}}</a>
+                {% for episode in season.episodes %}
+                    <a href="{{ path('showEpisode', {'program': program.id,'season': season.id, 'episode': episode.id }) }}">
+                        Episode: {{ episode.number }}</a><p>. {{ episode.title }}</p><br>
+                {% endfor %}
             </li>
-        {% endfor %}
-        {% for episode in season.episodes %}
-            <a href="{{ path('showEpisode', {'program': program.id,'season': season.id, 'episode': episode.id }) }}">
-            Episode: {{ episode.number }}</a><p>. {{ episode.title }}</p><br>
         {% endfor %}
     </ul>
 {% endblock %}

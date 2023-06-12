@@ -6,35 +6,28 @@ use App\Entity\Episode;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        $episode = new Episode();
-        $episode->setTitle('Welcome to the Playground');
-        $episode->setNumber(1);
-        $episode->setYear(2000);
-        $episode->setSynopsis('synopsis épisode 1');
-        $episode->setSeasonId($this->getReference('season1_Lost'));
-        $manager -> persist($episode);
+        $faker = Factory::create();
 
-        $episode = new Episode();
-        $episode->setTitle('Fixture is shit');
-        $episode->setNumber(2);
-        $episode->setYear(2000);
-        $episode->setSynopsis('synopsis épisode 2');
-        $episode->setSeasonId($this->getReference('season1_Lost'));
-        $manager -> persist($episode);
-
-        $episode = new Episode();
-        $episode->setTitle('Bye Bye to the Playground');
-        $episode->setNumber(3);
-        $episode->setYear(2000);
-        $episode->setSynopsis('synopsis épisode 3');
-        $episode->setSeasonId($this->getReference('season1_Lost'));
-        $manager -> persist($episode);
-        $manager ->flush();
+        for($i = 1; $i <= 5; $i++) {
+            for ($j = 1; $j <= 5; $j++) {
+                for ($k = 1; $k <= 10; $k++) {
+                    $episode = new episode();
+                    $episode->setTitle($faker->word());
+                    $episode->setNumber($k);
+                    $episode->setSynopsis($faker->paragraph(2));
+                    $episode->setSeasonId($this->getReference('program_' . $i . 'season_' . $j));
+                    $manager->persist($episode);
+                }
+            }
+        }
+        $manager->flush();
     }
+
 
     public function getDependencies()
     {

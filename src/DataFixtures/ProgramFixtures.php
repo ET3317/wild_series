@@ -9,55 +9,44 @@ use Doctrine\Persistence\ObjectManager;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager): void
+    const PROGRAM = [
+        1 =>[
+            'name' => 'walkind dead',
+            'synopsis' => 'Des zombies envahissent la terre',
+            'category'=> 'Action',
+        ],
+        2 =>[
+            'name' => 'How I meet your Mother',
+            'synopsis' => "l'histoire d'un père de famille qui raconte ca rencontre",
+            'category' => 'Aventure',
+        ],
+        3 =>[
+            'name' => 'naruto',
+            'synopsis' => "apprentissage ninja",
+            'category' => 'Animation',
+        ],
+        4 =>[
+            'name' => 'chucky',
+            'synopsis' => "petite poupée adorable qui découpe des personnes",
+            'category' => 'Horreur',
+        ],
+        5 =>[
+            'name' => 'bilbon',
+            'synopsis' => "découverte de la terre du milieu",
+            'category' => 'Fantastique',
+        ],
+    ];
+    public function load(ObjectManager $manager)
     {
-        $programsData = [
-            [
-                'name' => 'Breaking Bad',
-                'synopsis' => 'Un prof de chimie atteint d\'un cancer devient dealer pour subvenir',
-                'poster' => 'BreakingBad.jpeg',
-                'categoryReference' => 'category_Comedie',
-            ],
-            [
-                'name' => 'Game of Thrones',
-                'synopsis' => 'Intrigues politiques et batailles épiques pour le trône de fer',
-                'poster' => 'GOT.jpg',
-                'categoryReference' => 'category_Drame',
-            ],
-            [
-                'name' => 'Stranger Things',
-                'synopsis' => 'Des enfants affrontent des phénomènes surnaturels dans une petite ville',
-                'poster' => 'stranger.jpeg',
-                'categoryReference' => 'category_Action',
-            ],
-            [
-                'name' => 'Friends',
-                'synopsis' => 'Les aventures et les déboires d\'un groupe d\'amis à New York',
-                'poster' => 'friends.jpeg',
-                'categoryReference' => 'category_Comedie',
-            ],
-            [
-                'name' => 'Lost',
-                'synopsis' => 'Un avion se crash sur une ile deserte, les survivants sont livrés à eux mêmes',
-                'poster' => 'lost.jpeg',
-                'categoryReference' => 'category_Action',
-            ],
-        ];
+        foreach (self::PROGRAM as $key => $values) {
 
-        foreach ($programsData as $programData) {
             $program = new Program();
-            $program->setName($programData['name']);
-            $program->setSynopsis($programData['synopsis']);
-            $program->setPoster($programData['poster']);
-            $category = $this->getReference($programData['categoryReference']);
-            $program->setCategory($category);
+            $program->setName($values['name']);
+            $program->setSynopsis($values['synopsis']);
+            $program->setCategory($this->getReference('category_'.$values['category']));
             $manager->persist($program);
-
-            if ($programData['name'] === 'Lost') {
-                $this->addReference('program_Lost', $program);
-            }
+            $this->addReference('program_' . $key, $program);
         }
-
         $manager->flush();
     }
     public function getDependencies()
