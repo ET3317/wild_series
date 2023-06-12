@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Episode;
 use App\Entity\Season;
+use App\Entity\Episode;
 use App\Form\ProgramType;
 
 
@@ -56,7 +56,7 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/program/{program}/season/{season}', name: 'showSeason')]
-    public function showSeason(Program $program, Season $season ): Response
+    public function showSeason(Program $program, Season $season): Response
     {
         return $this->render('program/season_show.html.twig', [
             'program' => $program,

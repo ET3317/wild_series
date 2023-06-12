@@ -4,13 +4,18 @@
 
 {% block body %}
     <h1>{{ program.name }}</h1>
-<ul>
     <p>{{program.synopsis}}</p>
+    <h2>Acteurs:</h2>
+    {% for actor in program.actors %}
+    <ul>
+        <li>{{ actor.name }}</li>
+    </ul>
+    {% endfor %}
+    <ul>
     {% for season in program.seasons %}
         <li>
             <a href="{{ path('showSeason', { program: program.id, season: season.id }) }}">Season : {{season.number}}</a>
         </li>
-        <p>{{season.description}}</p>
     {% endfor %}
 </ul>
 {% endblock %}

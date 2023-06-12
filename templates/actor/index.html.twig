@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All actors{% endblock %}
+
+{% block body %}
+    {% for actor in actors %}
+        <a href="/actor/{{actor.id}}">
+       <h4>{{ actor.name }}</h4>
+        </a>
+    {% endfor %}
+{% endblock %}
